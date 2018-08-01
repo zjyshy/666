@@ -1,0 +1,223 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#app_background{
+    background-color: #fafafa;
+}
+
+#app_top{
+    width: 100%;
+    height: 43px;
+    position: fixed;
+    z-index: 100;
+    background-color: #3d3d3d;
+}
+#app_body{
+    max-width: 980px;
+}
+#top_inner{
+    max-width: 950px;
+}
+#left_menu{
+    user-select: none !important;
+    float: left;
+    width: 265px;
+    padding-left: 30px;
+    padding-top: 50px;
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border-right: 1px solid #f1f1f1;
+    background-color: #fafafa;
+}
+#left_menu:hover{
+    overflow-y: auto;
+}
+.logo{
+    margin-left: 36px;
+    padding-top: 9px;
+    float: left;
+}
+.quick_find{
+    white-space: nowrap;
+    margin-left: 317px;
+    padding-top: 5px;
+}
+.quick_find_click .quick_find_input{
+    background-color: #fff;
+    width: 99%;
+    position: relative;
+    z-index: 10;
+    border: 1px solid #eeeeee;
+    color: #202020;
+}
+.quick_find_click .zoom{
+    background-position: 0 -1070px;
+    z-index: 15;
+}
+.quick_find_click .help_icon img{
+   
+    background-position: 0 -1052px;
+    opacity: 1;
+}
+.top_logo{
+
+    width: 25px;
+    height: 25px;
+    background: url(../img/icon.png) 0 0 no-repeat;
+    background-position: 0 -2544px;
+
+}
+.quick_find_input{
+    border: 1px solid transparent !important;
+    border-radius: 3px;
+    padding: 5px;
+    width: 300px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    color: #fff;
+    padding-left: 30px;
+    margin-top: 2px;
+    background: 0;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+.top_icon{
+    float: right;
+}
+.top_icon span{
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    height: 100%;
+    padding: 12px 10px 0 10px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.top_add img{
+    height: 18px;
+    width: 18px;
+    background: url(../img/icon.png) 0 0 no-repeat;
+    background-position: 0 -1141px;
+}
+.top_message img{
+    height: 18px;
+    width: 18px;
+    background: url(../img/icon.png) 0 0 no-repeat;
+    background-position: 0 -1032px;
+}
+.top_set img{
+    height: 18px;
+    width: 18px;
+    background: url(../img/icon.png) 0 0 no-repeat;
+    background-position: 0 -1158px;
+}   
+.zoom{
+    width: 16px;
+    height: 16px;
+    background: url(../img/icon.png)0 0 no-repeat;
+    background-size: 197px,3538px;
+    background-position: 0 -1412px;
+    position: absolute;
+    
+    margin-top: 9px;
+    margin-left: 8px;
+    cursor: text !important;
+    -webkit-transition: opacity .1s ease-in;
+    transition: opacity .1s ease-in;
+}
+
+.help_icon{
+    position: relative;
+    z-index: 15;
+    padding: 0 5px;
+    margin-left: -24px;
+    opacity: 1;
+}
+.help_icon img{
+    opacity: 0;
+    margin-top: -3px;
+    background: url(../img/icon.png) 0 0 no-repeat;
+    background-size: 197px,3538px;
+    background-position: 0 -1394px;
+    width: 16px;
+    height: 16px;
+}
+.menu_top_main{
+    padding-top: 24px;
+}
+.menu_content{
+    font-size: 14px;
+    cursor: pointer;
+    padding: 9px 16px 9px 4px;
+    display: flex;
+    align-items: center; 
+    transition: color .1s ease-in,background-color .1s ease-in;
+}
+.menu_content:hover{
+
+    background-color: #fff;
+}
+#current{
+    font-weight: bold;
+    background-color: #fff;
+}
+.menu_icon{
+    height: 24px;
+    margin-right: 10px;
+}
+.menu_name{
+    margin-right: 5px;
+}
+.menu_low_panel{
+    
+}
+.expand{
+    border-bottom: 1px solid #f1f1f1;
+}
+.menu_low_summary{
+
+    padding: 12.5px 0;
+    position: relative;
+    cursor: pointer;
+}
+.menu_low_summary_icon {
+
+    position: absolute;
+    top: 7px;
+    padding-left:   7px;
+   
+}
+.menu_low_summary_icon svg{
+    transform: rotate(-90deg);
+    transition: transform 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+
+.menu_low_summary_content{
+    padding-left: 40px;
+    position: relative;
+}
+.menu_low_summary_content svg{
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    fill: rgba(0,0,0,.3)
+}
+.menu_low_summary_content svg:hover{
+    fill: rgba(0,0,0,0.6);
+}
+.expand .menu_low_summary_icon svg{
+    transform: rotate(0);
+}
+
+.collapse__wrapper{
+    height: 0;
+    overflow: hidden;
+    transition: height 300ms cubic-bezier(0.4,0,0.2,1);
+    border-top: 1px solid #f1f1f1;
+}
