@@ -31,6 +31,7 @@
     overflow-y: hidden;
     border-right: 1px solid #f1f1f1;
     background-color: #fafafa;
+   
 }
 #left_menu:hover{
     overflow-y: auto;
@@ -205,7 +206,7 @@
 .menu_low_summary_content svg{
     position: absolute;
     top: 2px;
-    right: 10px;
+    left: 230px;
     fill: rgba(0,0,0,.3)
 }
 .menu_low_summary_content svg:hover{
@@ -220,4 +221,62 @@
     overflow: hidden;
     transition: height 300ms cubic-bezier(0.4,0,0.2,1);
     border-top: 1px solid #f1f1f1;
+}
+#project{
+    padding-top: 10px;
+}
+#project li{
+
+    padding: 6.5px 0 6.5px 4px;
+    font-weight: 200;
+
+}
+
+.project_move{
+    position:absolute;
+    margin-left: -10px;
+    z-index:99;
+}
+.project_move img{
+    position: relative;
+    z-index: 200 ;
+}
+.project_color::before{
+    content: " ";
+    height: 10px;
+   width: 10px;
+    background-color: aquamarine;
+    display:inline-block;
+    border-radius: 50%;
+    
+}
+.project_name{
+
+    padding-left: 15px;
+    font-size: 15px;
+}
+
+.project_color{
+   padding-left: 10px;
+
+    
+}
+.project_option{
+   
+}
+.project_option img{
+    background: url("../img/icon.png") 0 0 no-repeat;
+    background-position: 0 -2060px;
+     height: 16px;
+    width: 18px;
+}
+    
+
+
+
+#main_content{
+    background-color: #fff;
+    padding: 0 20px;
+    margin-left: 284px;
+    border-right: 1px solid #f1f1f1;
 }

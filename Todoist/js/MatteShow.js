@@ -15,7 +15,7 @@
     function resize(){
         //监听resize事件，
         window.addEventListener("resize", () =>{
-            //控制右侧主体内容的高度
+            //控制左侧和主体内容的高度
             contentAndLeftH();
             appBodyAndTopM();
         });
