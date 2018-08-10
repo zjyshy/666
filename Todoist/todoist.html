@@ -6,19 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/todoist.css">
     <link rel = "Shortcut Icon" href="img/sign.png"> 
+    <script src="js/meth.js"></script>
     <script src="js/MatteShow.js"></script>
     <script src="js/todoist.js"></script>
+    
     <title>Todoist</title>
 </head>
 <body>
 
     
         <div id="todoist_app">
-                <div id="app_background">
+                <div  class="top_inner app_background">
+                       
                     <div id="app_top">
-                        <div id="top_inner">
+                        <div id="top_inner" >
                             <div class="logo">
                                         <img class="top_logo" src="img/holder.gif" alt="logo">
+                                    </div>
+                                    <div class="left_menu_hide ">
+                                        <img class="menu_hide left_menu_show" src="img/holder.gif" alt="hide">
+
                                     </div>
                                     <div class="top_icon">
                                         <span class=""></span>
@@ -44,8 +51,12 @@
                     </div>
                     <!--将app_body的宽度设置成max-width这样当宽度小于980px时会自动适应大小，如果设置成width快读就会固定成980px-->
                     <div id="app_body">
+                        <div>
+                                <div class="shutter"></div>
                         <div id="left_menu">
+                            
                             <div>
+                                   
                                 <div class="left_menu_top">
                                     <ul class="menu_top_main">
                                         <li class="menu_inbox_page menu_content">
@@ -141,6 +152,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
                         <div id="main_content" class="">
                             <div id="editor">

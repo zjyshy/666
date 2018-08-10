@@ -6,7 +6,7 @@
 button{
     cursor:pointer;
 }
-#app_background{
+.app_background{
     background-color: #fafafa;
 }
 
@@ -34,8 +34,15 @@ button{
     overflow-y: hidden;
     border-right: 1px solid #f1f1f1;
     background-color: #fafafa;
+    z-index: 80;
+    transition: left .1s ease-in;
    
 }
+
+#left_menu{
+
+}
+
 #left_menu:hover{
     overflow-y: auto;
 }
@@ -43,6 +50,58 @@ button{
     margin-left: 36px;
     padding-top: 9px;
     float: left;
+}
+.small .logo{
+    display: none;
+}
+.small .left_menu_hide{
+    display: block;
+}
+.small .left_menu_hide .menu_appear{
+    background-position: 0 -694px !important;
+}
+.small .quick_find{
+    margin: 0;
+}
+.small #left_menu{
+    left: -320px ;
+    float: none ;
+}
+.click #app_body #left_menu{
+
+    left: 0;
+}
+.small #main_content{
+    margin: 0;
+}
+.shutter{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;;
+    z-index: 50;
+    display: none;
+}
+.click .shutter{
+    display: block;
+}
+.left_menu_hide{
+    cursor: pointer;
+    float: left;
+    padding: 12px 0 0 10px;;
+    display: none;
+
+}
+.left_menu_hide img{
+    background: url(../img/icon.png) 0 0 no-repeat;
+   
+    width: 20px;
+    height: 15px;
+}
+.left_menu_hide .menu_hide{
+    background-position: 0 -711px !important;
+}
+.small .quick_find{
+    margin-left: 40px;
 }
 .quick_find{
     white-space: nowrap;
@@ -351,4 +410,29 @@ button{
 }
 .sub_project_no:hover{
     text-decoration: underline;
+}
+#project  img{
+    height: 20px;
+    width: 25px;
+    background: url("../img/icon.png") 0 0 no-repeat;
+    background-position: 0 -1102px;
+    position: absolute;
+    left: 200px;
+    top: 8px;
+    opacity: 0;
+
+
+}
+#project li:hover img{
+    opacity: .5;
+}
+#project li  img:hover{
+    opacity: 1;
+}
+#project li {
+    position: relative;
+    cursor: pointer;
+}
+#project li:hover{
+    background-color: #fff;
 }
