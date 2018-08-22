@@ -287,7 +287,7 @@ button{
 #project{
     padding-top: 10px;
 }
-#project li{
+#project li div{
 
     padding: 6.5px 0 6.5px 4px;
     font-weight: 200;
@@ -371,6 +371,7 @@ button{
 .sub_project_name{
     height: 20px;
     padding: 7px;
+    margin-bottom: 10px;
     background-color: #fff;
     width: 230px;
     border: 1px solid #f1f1f1;
@@ -392,7 +393,7 @@ button{
     outline: none;
     padding-left: 10px;
 }
-.sub_project_yes{
+.sub_yes{
     height: 30px;
     width: 80px;
     font-size: 13px;
@@ -402,7 +403,7 @@ button{
     font-weight: 200;
     outline: none;
 }
-.sub_project_no{
+.sub_no{
     border: none;
     background-color: transparent;
     outline: none;
@@ -435,4 +436,86 @@ button{
 }
 #project li:hover{
     background-color: #fff;
+}
+.tag_background_white{
+    background-color: #fff;
+}
+.main_hide{
+    display: none;
+}
+.main_show{
+    display: block;
+    padding-top: 70px;
+    padding-left: 50px;
+}
+
+.tag_background_hide{
+    display: none;
+}
+.today_time{
+    font-size: 12px;
+    font-weight: 100;
+}
+.add_t p{
+
+    padding-top: 30px;
+    opacity: .5;
+    transition: left .1s ease-in;
+}
+.add_t p:hover{
+  opacity: 1;
+   
+}
+.add_task{
+    padding-left: 20px;
+    cursor: pointer;
+    
+}
+.add_task:hover{
+    text-decoration: underline;   
+}
+
+
+.add_task_icon{
+    transition: left .1s ease-in;
+}
+.sub_task_body{
+    height: 30px;
+    padding: 7px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    width: 90%;
+    border: 1px solid #eee;
+}
+.sub_task_holder{
+    width: 100%;
+    border-right: 1px solid #eee;
+}
+.sub_task_content,.sub_task_date{
+    height: 15px;
+    outline: none;
+    display: inline-block;
+    padding: 0 6px;
+    padding-top: 4px;
+    
+}
+.sub_task_content{
+    border: 0;
+    width: 90%;
+    
+}
+.sub_task_date{
+    width: 110px;
+    float: right;
+}
+table{
+    width: 90%;
+    border-collapse: collapse;
+}
+td{
+    height: 40px;
+    padding-left: 10px;
+    border:1px solid #eee;
+    outline: none;
+
 }
