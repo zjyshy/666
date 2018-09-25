@@ -49,5 +49,6 @@
     又掌握了一种定宽+自适应的实现方法，之前都是一侧浮动+设置margin，这次使用了table的方式。
 
 
-
+# 8月24日更新
+    发现border-collapse: collapse;和border-radiu会发生冲突，套外壳，给外壳加圆角
 

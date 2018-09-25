@@ -37,7 +37,7 @@
   const appBody = document.getElementById("app_body");
   //获取负责包住头部内容的标签
   const topInner = document.getElementById("top_inner");
-  const MHS = document.getElementsByClassName("left_menu_show");
+  const MHS = document.querySelector(".left_menu_show");
   let top = document.getElementsByClassName("app_background");
   //如果不这样会导致margin变成负的
   if(AHW>=980)
@@ -75,7 +75,8 @@
   const MContent = document.getElementById("main_content");
   //当宽度缩小到750左边菜单出现时会出现这个遮挡物
   const shutter = document.getElementsByClassName("shutter");
-  MContent.style = `height:${RCH}px;`;
+  //这里的min-height非常重要如果用了height 就会导致内部元素过大时不能撑开背景
+  MContent.style = `min-height:${RCH}px;`;
   LeftMenu.style = `height:${RCH-50}px`;
   shutter[0].style = `height:${RCH}px`;
  }
@@ -138,7 +139,7 @@
 		
   //当视口宽度小于750的时候会出现这个
   const LMH = document.getElementsByClassName("left_menu_hide");
-  const MHS = document.getElementsByClassName("left_menu_show");
+  const MHS = document.querySelector(".left_menu_show");
   const appB = document.getElementsByClassName("app_background");
   const shutter = document.getElementsByClassName("shutter");
   LMH[0].addEventListener("click", () =>{
@@ -162,6 +163,29 @@
 		
 
  }
+
+ //点击today的添加任务按钮
+ function todayAddTask(){
+  let addTaskBtn = document.querySelector(".add_task");//today的添加任务按钮
+  let todayAddTaskMain = document.querySelector(".today_add_task_main");//获取今天的添加任务一块
+  let todayAddTaskMainTable = document.querySelector(".today_add_task_main table");
+  let todayAddTaskContentInp = document.querySelector(".today_add_task_content input");//今天任务内容
+  let addT = document.querySelector(".add_t p");
+  
+  addTaskBtn.addEventListener("click", ()=>{
+   if(!document.querySelector(".today_add_task_main_show")){
+    changeClass.cha(todayAddTaskMain, "today_add_task_main", "today_add_task_main_show");
+    addT.style.display = "none";
+    todayAddTaskContentInp.focus();
+
+
+
+   }
+  });
+  
+ }
+  
+
  function main(){
   contentAndLeftH();
   appBodyAndTopM();
@@ -170,6 +194,8 @@
 		
   menuExpand();
   clickToplogo();
+  todayAddTask();
+
 
  }
  addLoadEvent(main);

@@ -8,7 +8,7 @@
     <link rel = "Shortcut Icon" href="img/sign.png"> 
     <script src="js/meth.js"></script>
     <script src="js/MatteShow.js"></script>
-    <script src="js/todoist.js"></script>
+    <script src="js/todoistxiu.js"></script>
     
     <title>Todoist</title>
 </head>
@@ -63,23 +63,23 @@
                                             <span class="menu_icon">
                                                 <svg width="24" height="24"><g fill="none" fill-rule="evenodd"><path fill="currentColor" d="M6 20h12a2 2 0 0 0 2-2v-4h-4.4l-.635 1.41a1 1 0 0 1-.912.59H9.947a1 1 0 0 1-.912-.59L8.4 14H4v4a2 2 0 0 0 2 2z"></path><path stroke="currentColor" d="M4.526 13.004a.5.5 0 0 0-.026.158V18A1.5 1.5 0 0 0 6 19.5h12a1.5 1.5 0 0 0 1.5-1.5v-4.838a.5.5 0 0 0-.026-.158l-2.16-6.478A1.5 1.5 0 0 0 15.893 5.5H8.108a1.5 1.5 0 0 0-1.423 1.026l-2.16 6.478z"></path></g></svg>
                                             </span>
-                                            <span class="menu_name">
-                                                <span>收件箱</span>
+                                            
+                                                <span class="menu_name title_name">收件箱</span>
                                                 <span class="menu_counter"></span>
-                                            </span>
+                                            
                                         </li>
-                                        <li class="menu_today_page menu_content tag_background">
+                                        <li class="menu_today_page menu_content tag_background tag_background_white">
                                             <span class="menu_icon">
                                                     <svg width="24" height="24"><g fill="currentColor" fill-rule="evenodd"><path d="M20 8v9.436c0 .892-.093 1.215-.267 1.54a1.81 1.81 0 0 1-.756.757c-.326.174-.65.267-1.54.267H6.563c-.892 0-1.215-.093-1.54-.267a1.817 1.817 0 0 1-.757-.756c-.174-.326-.267-.65-.267-1.54V6a2 2 0 0 1 2-2h1V2.5a.5.5 0 0 1 1 0V4h8V2.5a.5.5 0 1 1 1 0V4h1a2 2 0 0 1 2 2v2zM6.564 8c-.662 0-.864.039-1.07.149a.818.818 0 0 0-.345.346C5.039 8.7 5 8.902 5 9.564v7.872c0 .662.039.864.149 1.07a.818.818 0 0 0 .346.345c.205.11.407.149 1.069.149h10.872c.662 0 .864-.039 1.07-.149a.818.818 0 0 0 .345-.346c.11-.205.149-.407.149-1.069V9.564c0-.662-.039-.864-.149-1.07a.818.818 0 0 0-.346-.345C18.3 8.039 18.098 8 17.436 8H6.564z"></path><text font-family="-apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'" font-size="9" transform="translate(4 2)"><tspan x="7.7" y="14.5" text-anchor="middle"> </tspan></text></g></svg>
                                             </span>
-                                            <span class="menu_name">今天</span>
+                                            <span class="menu_name title_name">今天</span>
                                             <span class="menu_counter"></span>
                                         </li>
                                         <li class="menu_week_page menu_content tag_background">
                                             <span class="menu_icon">
                                                 <svg width="24" height="24"><path fill="currentColor" fill-rule="evenodd" d="M20 8v9.436c0 .892-.093 1.215-.267 1.54a1.81 1.81 0 0 1-.756.757c-.326.174-.65.267-1.54.267H6.563c-.892 0-1.215-.093-1.54-.267a1.817 1.817 0 0 1-.757-.756c-.174-.326-.267-.65-.267-1.54V6a2 2 0 0 1 2-2h1V2.5a.5.5 0 0 1 1 0V4h8V2.5a.5.5 0 1 1 1 0V4h1a2 2 0 0 1 2 2v2zM6.564 8c-.662 0-.864.039-1.07.149a.818.818 0 0 0-.345.346C5.039 8.7 5 8.902 5 9.564v7.872c0 .662.039.864.149 1.07a.818.818 0 0 0 .346.345c.205.11.407.149 1.069.149h10.872c.662 0 .864-.039 1.07-.149a.818.818 0 0 0 .345-.346c.11-.205.149-.407.149-1.069V9.564c0-.662-.039-.864-.149-1.07a.818.818 0 0 0-.346-.345C18.3 8.039 18.098 8 17.436 8H6.564zM8 13a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm-8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm4 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path></svg>
                                         </span>
-                                        <span class="menu_name">未来七天</span>
+                                        <span class="menu_name title_name">未来七天</span>
                                         <span class="menu_counter"></span>
                                     </li>
                                     </ul>
@@ -164,18 +164,21 @@
                                             <h3>收件箱</h3>
 
                                         </div>
-                                        <div class="show_today main_hide">
+                                        <div class="show_today main_hide main_show">
                                             <h3><span>今天 </span><span class="today_time"> </span></h3>
+                                            <ul class="today_task_list">
+                                             </ul>
                                             <div class="add_t">
                                                 <p >
                                                     <span><svg width="12" height="12" viewBox="0 0 24 24" class="add_task_icon" data-track="navigation|projects_quick_add"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"></path></svg></span>
                                                     <span class="add_task">添加任务</span>
                                                 </p>
+                                                <div class="today_add_task_main">
                                                 <table>
                                                     <tbody>
                                                         <tr>
-                                                            <td contenteditable="true"> </td>
-                                                            <td style="width:110px; " placeholder="hehehe" contenteditable="true"> </td>
+                                                            <td class="today_add_task_content"><input type="text"  > </td>
+                                                            <td style="width:110px;" class="today_add_task_date"><input type="text"  placeholder="例如：1月1日" > </td>
                                                         </tr>
 
 
@@ -186,6 +189,7 @@
                                             
                                                 </div>
                                             </div>
+                                            </div>
                                         </div>
                                         <div class="show_sever main_hide">
                                             <h3>未来七天</h3>
@@ -193,7 +197,32 @@
                                     </div>
                                     <div class="project_main">
                                         <div class="project_main_name main_hide">
-                                            <h1></h1>
+                                            <h1 class = "project_add_task_main_name"> </h1>
+                                            <span style="display: none;" class="project_add_task_id"> </span>
+                                            <ul class="project_task_list">
+                                            </ul>
+                                               <div class="project_add_t">
+                                                   <p >
+                                                       <span><svg width="12" height="12" viewBox="0 0 24 24" class="add_task_icon" data-track="navigation|projects_quick_add"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"></path></svg></span>
+                                                       <span class="project_add_task">添加任务</span>
+                                                   </p>
+                                                   <div class="project_add_task_main">
+                                                   <table>
+                                                       <tbody>
+                                                           <tr>
+                                                               <td class="project_add_task_content"><input type="text"  > </td>
+                                                               <td style="width:110px;" class="project_add_task_date"><input type="text"  placeholder="例如：1月1日" > </td>
+                                                           </tr>
+   
+   
+                                                       </tbody>
+                                                   </table>
+                                                   <div>
+                                                       <button class="sub_project_task_yes sub_yes">添加任务</button> <button class="sub_project_task_no sub_no">取消</button>
+                                               
+                                                   </div>
+                                               </div>
+                                               </div>
                                         </div>
 
                                     </div>

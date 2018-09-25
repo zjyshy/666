@@ -345,6 +345,8 @@ button{
 
 .add_project_name{
     font-size: 14px;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 .add_project_name p{
     cursor: pointer;
@@ -467,7 +469,7 @@ button{
    
 }
 .add_task{
-    padding-left: 20px;
+    padding-left: 5px;
     cursor: pointer;
     
 }
@@ -510,12 +512,119 @@ button{
 }
 table{
     width: 90%;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+tbody{
     border-collapse: collapse;
 }
 td{
     height: 40px;
     padding-left: 10px;
-    border:1px solid #eee;
+    padding-right: 10px;
+   overflow: inherit;
     outline: none;
 
+}
+td input{
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 30px;
+}
+
+.today_add_task_content{
+    border-right: 1px solid #eee;
+}
+.project_add_task_content{
+    border-right: 1px solid #eee;
+}
+.today_add_task_main{
+    display: none;
+}
+.today_add_task_main_show{
+    padding-top: 15px;
+}
+.today_add_task_main_show table{
+    margin-bottom: 10px;
+}
+.project_amount{
+    float: right;
+    margin-right: 30px; 
+    padding-top: 5px;
+    font-size: 12px;
+
+}
+.task_content_del{
+    display: inline-block;
+    border: 1px solid #000000;
+    border-radius: 50%;   
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.task_content_del:hover{
+   
+    background: url(../img/right.svg);
+    background-size: 16px 16px;
+
+}
+.task_name{
+padding-left: 15px;
+vertical-align: top;
+line-height: 17px;
+}
+.task_project{
+    padding-left: 15px;
+vertical-align: top;
+line-height: 19px;
+float: right;
+padding-right: 10px;
+
+}
+.task_list{
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    width: 540px;
+    padding-top: 20px;
+
+}
+.task_content_d{
+    display: none;
+}
+.project_add_task_main{
+    display: none;
+}
+.project_add_task_main_show{
+    padding-top: 20px;
+    display: block;
+}
+.project_add_t{
+    cursor: pointer;
+}
+.project_add_t>p{
+    padding-top: 10px;
+}
+.project_add_t table{
+    margin-bottom: 10px;
+}
+.project_content_del{
+    display: inline-block;
+    border: 1px solid #000000;
+    border-radius: 50%;   
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.project_content_del:hover{
+   
+    background: url(../img/right.svg);
+    background-size: 16px 16px;
+
+}
+.project_task_list li {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    width: 540px;
+    padding-top: 20px;
 }

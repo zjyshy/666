@@ -28,6 +28,10 @@ module.exports = {
         ],
         "key-spacing": [
             "error",
-             { "beforeColon": false }]
-    }
+             { "beforeColon": false }],
+        "no-console": [
+            "off"
+        ]
+    },
+    
 }; 
