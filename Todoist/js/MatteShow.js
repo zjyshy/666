@@ -56,11 +56,11 @@
    flags = 1;
 			
   }else if(AHW > 750 && flags==1){
-   changeClass.del(top, "small");
+   changeClass.del(top[0], "small");
    flags = 0;
    //为了防止宽度大于750后叉号不会变回去
    changeClass.cha(MHS, "menu_appear", "menu_hide");
-   changeClass.del(top, "click");
+   changeClass.del(top[0], "click");
 
   }
 		
@@ -151,12 +151,12 @@
    }
    else{
     changeClass.cha(MHS, "menu_appear", "menu_hide");
-    changeClass.del(appB, "click");
+    changeClass.del(appB[0], "click");
     flag = 0;
    }
    shutter[0].addEventListener("click", ()=>{
     changeClass.cha(MHS, "menu_appear", "menu_hide");
-    changeClass.del(appB, "click");
+    changeClass.del(appB[0], "click");
     flag = 0;
    });
   });
