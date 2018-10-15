@@ -21,8 +21,10 @@
   controlDB.show(dbPN, "pro", 2);
   todayTaskS(); 
  };
+
  DBOpenRequest.onupgradeneeded =function(e){
   db = e.target.result;
+
   var objectStoreT = db.createObjectStore(dbTN, { 
    keyPath: "id",
    autoIncrement: true
@@ -31,12 +33,15 @@
    keyPath: "id",
    autoIncrement: true
   });
+
   objectStoreT.createIndex("id", "id", {
    unique: true,
   });
+
   objectStoreP.createIndex("id", "id", {
    unique: true,
   });
+  
   objectStoreT.createIndex("content", "content");
   objectStoreT.createIndex("date", "date");
   objectStoreT.createIndex("pro", "pro");
@@ -50,6 +55,7 @@
   var objectStore = transaction.objectStore(dbPN);
   console.log(objectStore.get(1));
   var objectStore = db.transaction(dbPN).objectStore(dbPN);
+
   objectStore.openCursor().onsuccess = function(e) {
    let cursor = e.target.result;
    //将收件箱作为一个project添加进来,只有当dbPNamne为空的时候才可以添加
@@ -62,6 +68,7 @@
    } 
   };  
  }
+
  var controlDB = {
 
   add: function(storeName, newItem){
@@ -91,14 +98,17 @@
    };
 
   },
-  get: function(storeName, id, value){
+  get: function(storeName, id, value, callback){
    var objectStore = db.transaction(storeName, "readwrite").objectStore(storeName);
    var objectStoreRequest = objectStore.get(id);
    objectStoreRequest.onsuccess =function(e){
     var myRecord = e.target.result;
     addValue = myRecord[value];
+    if(callback)callback(addValue); // when sth. is ready, plz do sth.
    };
+  
   },
+
   //按照一定的要求游历数据库中的内容，可设置上界下界,这里sel是用来选择具体是为项目还是任务创建列表
   show: function(storeName, sel){
    let args = Array.prototype.slice.call(arguments);
@@ -126,6 +136,8 @@
       deleProject();
       clickCW();
       addProjectTask();
+      ProjectTaskAmount();
+
 
      }
     };
@@ -150,18 +162,39 @@
   let args = Array.prototype.slice.call(arguments);
   if(target == "project"){
    if(!args[3]){args[3] = 0;}
-   projectLi.innerHTML = `<div ><span class='project_color'> </span><span class='project_name'>${content} </span><span class='project_amount'>${args[3]}</span></div> <span class = "delete_id" style = "display:none">${dele} </span><img class = "de" src="img/holder.gif">`;
+   projectLi.innerHTML = 
+   `<div>
+     <span class='project_color'></span>
+     <span class='project_name'>${content}</span>
+     <span class='project_amount'>${args[3]}</span>
+    </div>
+    <span class = "delete_id" style = "display:none">${dele}</span>
+    <img class = "de" src="img/holder.gif">`;
    projectUl.appendChild(projectLi);
 
   }else if(target == "today"){
    if(!args[3]){args[3] = "收件箱";}
-   taskLi.innerHTML = `<div><span class="task_content_del"></span><span class = "task_content_d">${dele}</span><span class="task_name">${content}</span><span class="task_project">${args[3]}</span></div>`;
+   taskLi.innerHTML = 
+   `<div>
+     <span class="task_content_del"></span>
+     <span class = "task_content_d">${dele}</span>
+     <span class="task_name">${content}</span>
+     <span class="task_project">${args[3]}</span>
+    </div>`;
    taskUL.appendChild(taskLi);
-  }else{
-   projectContentLi.innerHTML = `<div><span class="project_content_del"></span><span class = "project_task_content_del" style="display:none"> ${dele}</span><span class = "project_task_content"> ${content}</span> </div>`;
+  }else if(target == "projectContent"){
+   projectContentLi.innerHTML = 
+   `<div>
+     <span class="project_content_del"></span>
+     <span class = "project_task_content_del" style="display:none">${dele}</span>
+     <span class = "project_task_content">${content}</span>
+     <span class = "project_task_date">${args[3]}</span>
+    </div>`;
    projectContentUl.appendChild(projectContentLi);
   }
  }
+
+
  //点击后变白
  function clickCW(){
   let TB = document.querySelectorAll(".tag_background");
@@ -175,6 +208,9 @@
    });
   }
  }
+
+
+
  function addTodayTaskShow(){
   let menuT = document.querySelector(".menu_today_page");
   let MH = document.querySelectorAll(".main_hide");
@@ -186,6 +222,9 @@
    changeClass.add(MH[1], "main_show");
   });
  }
+
+
+
  function addProjectTask(){
   let proL = document.querySelectorAll(".pro_li");
   let MH = document.querySelectorAll(".main_hide");
@@ -207,9 +246,23 @@
    
 
   }  
- 
-  
  }
+
+ function addInboxShow(){
+
+  let menuInbox = document.querySelector(".menu_inbox_page");
+  let MH = document.querySelectorAll(".main_hide");
+  menuInbox.addEventListener("click", ()=>{
+   let MS = document.querySelector(".main_show");
+   if(MS){
+    changeClass.del(MS, "main_show");
+   }
+   changeClass.add(MH[0], "main_show");
+   inboxContentShow();
+  });
+
+ }
+
  function setTime(){
   let todaytime = document.querySelectorAll(".today_time");
   let todayAddTaskDateInp = document.querySelector(".today_add_task_date input");//today日期框的内容
@@ -261,7 +314,7 @@
   });
   no.addEventListener("click", ()=>{
    changeClass.cha(projectOpen, "project_close", "project_open");
-   PCS.childNodes[0].nodeValue = " ";
+   if(PCS.childNodes[0])PCS.childNodes[0].nodeValue = " ";
   });
  }
  function todayAddTask(){
@@ -291,25 +344,31 @@
     var objectStore = db.transaction(dbPN, "readwrite").objectStore(dbPN);
     var objectStoreRequest = objectStore.get(1);
     objectStoreRequest.onsuccess = function(){
+
+
      if(parseInt(arr[0]) == (da.getMonth()+1)&&parseInt(arr[1]) ==(da.getDate())){
       createLi(addValue, todayAddTaskContentInp.value, "today"); 
-      let item = {
-       "content": todayAddTaskContentInp.value,
-       "date": todayAddTaskDateInp.value,
-       "pro": 1
-      };
-      let item2 = {
-       task: addValue + 1
-      };
-      controlDB.edit(dbPN, 1, item2);
-    
-      controlDB.add(dbTN, item);
-     
-      deleteTodayT();
-
-      clickCTTC();
-      
      }
+    
+     let item = {
+      "content": todayAddTaskContentInp.value,
+      "date": todayAddTaskDateInp.value,
+      "pro": 1
+     };
+     let item2 = {
+      task: addValue + 1
+     };
+     controlDB.edit(dbPN, 1, item2);
+   
+     controlDB.add(dbTN, item);
+    
+     deleteTodayT();
+
+     clickCTTC();
+     addT.style.display = "block";
+     changeClass.cha(todayAddTaskMain, "today_add_task_main_show", "today_add_task_main");
+     todayAddTaskContentInp.value = " ";
+
     };
     
    }else{
@@ -333,17 +392,27 @@
 
  }
 
+
+
  function todayTaskS(){
   let objectStore = db.transaction(dbTN).objectStore(dbTN);
   let regSetDate = /\d+/g;//提取出来所有的数字
-
+  let  todayTaskL = document.querySelector(".today_task_list");
+  todayTaskL.innerHTML = "";
   objectStore.openCursor().onsuccess = function(e){
    let cursor = e.target.result;
    
    if(cursor){
     let dateArr = cursor.value.date.match(regSetDate);
     if(parseInt(dateArr[0])==(da.getMonth()+1) && parseInt(dateArr[1]) == da.getDate()){
-     createLi(cursor.value.id, cursor.value.content, "today");
+
+
+     if(cursor.value.pro == 1){
+      createLi(cursor.value.id, cursor.value.content, "today");
+     }else{
+      createLi(cursor.value.id, cursor.value.content, "today", cursor.value.pro[0]);
+     }
+
 
     }
     
@@ -355,41 +424,145 @@
   };
 
  }
+
+
+
  //点击后修改今天的任务内容
  function clickCTTC(){
+
+
   let TL = document.querySelectorAll(".task_list");
   let TN = document.querySelectorAll(".task_name");
   let taskDelete = document.querySelectorAll(".task_content_d");
+
   for(let i = 0; i<TL.length ; i++){
    TL[i].onclick  = function(){
+
     let promptValue = prompt("你想改成啥");
     if(promptValue &&!(/^\s*$/).test(promptValue)){
      TN[i].childNodes[0].nodeValue = promptValue;
      let itemT = {
       "content": promptValue
      };
+
      controlDB.edit(dbTN, parseInt(taskDelete[i].childNodes[0].nodeValue), itemT);
     }
-
    };
   }
+ } 
+ function clickCPTC(){
+
+  let TL = document.querySelectorAll(".project_task_list li");
+  let proTaskCon = document.querySelectorAll(".project_task_content");
+  let taskDel = document.querySelectorAll(".project_task_content_del");
+
+  for(let i = 0; i<TL.length ; i++){
+   TL[i].onclick  = function(){
+    let promptValue = prompt("你想改成啥");
+    if(promptValue &&!(/^\s*$/).test(promptValue)){
+     proTaskCon[i].childNodes[0].nodeValue = promptValue;
+     let itemT = {
+      "content": promptValue
+     };
+     controlDB.edit(dbTN, parseInt(taskDel[i].childNodes[0].nodeValue), itemT);
+     todayTaskS();
+
+
+    }
+   };
+  }
+
  }
 
+
+ function clickCITC(){
+
+  let TL = document.querySelectorAll(".inbox_task_list li");
+  let TN = document.querySelectorAll(".inbox_task_name");
+  let taskDelete = document.querySelectorAll(".inbox_task_id");
+
+  for(let i = 0; i<TL.length ; i++){
+   TL[i].onclick  = function(){
+
+    let promptValue = prompt("你想改成啥");
+    if(promptValue &&!(/^\s*$/).test(promptValue)){
+     TN[i].childNodes[0].nodeValue = promptValue;
+     let itemT = {
+      "content": promptValue
+     };
+
+     controlDB.edit(dbTN, parseInt(taskDelete[i].childNodes[0].nodeValue), itemT);
+     todayTaskS();
+    }
+   };
+  }
+ } 
+
+ 
+
  function deleProject(){
+  
   let deBtn = document.querySelectorAll(".de");
   let PL = document.querySelectorAll("#project li");
   let D = document.querySelectorAll(".delete_id");
+  let projectAddTId = document.querySelector(".project_add_task_id");
+  
   for(let i =0; i < PL.length; i++){
    //这里必须使用onclik ，使用addlistener的时候会因为监听多次导致错误
    deBtn[i].onclick = function(e){
     e.cancelBubble = true;
+
+    
+    if(projectAddTId.childNodes[0].nodeValue == D[i].childNodes[0].nodeValue){
+     let mainShow = document.querySelector(".main_show");
+     changeClass.del(mainShow, "main_show");
+    }
+
     PL[i].parentNode.removeChild(PL[i]);  
 
     controlDB.del(dbPN, parseInt(D[i].childNodes[0].nodeValue));
+
+    deleteProjectContent(parseInt(D[i].childNodes[0].nodeValue));
+
+    
     clickCW();
    };
   }
  } 
+
+ function deleteProjectContent(value){
+
+  let objectStore = db.transaction(dbTN).objectStore(dbTN);
+
+
+
+
+  objectStore.openCursor().onsuccess = function(e){
+
+
+   let cursor = e.target.result;
+
+   if(cursor){
+    if(cursor.value.pro[1] == value){
+
+     controlDB.del(dbTN, cursor.value.id);
+
+
+    }
+
+    cursor.continue();
+   }else{
+    todayTaskS(); 
+
+   }
+
+
+  };
+
+
+ }
+
+
  function deleteTodayT(){
   var todayTDelete = document.querySelectorAll(".task_content_del");
   var taskDelete = document.querySelectorAll(".task_content_d");
@@ -400,13 +573,14 @@
     e.cancelBubble = true;
 
     todayTaskListUl.removeChild(todayTaskListLi[i]);
-    alert(parseInt(taskDelete[i].childNodes[0].nodeValue));
     controlDB.del(dbTN, parseInt(taskDelete[i].childNodes[0].nodeValue));
-   
+    ProjectTaskAmount();
     
    };
   }
  }
+
+
 
 
 
@@ -422,6 +596,8 @@
   const reg = /^\s*$/; 
   let regTestDate = /^(\d|1[0-2])月(\d|[012]\d|3[01])日$/;//测试是否符合日期形式如1月1日
   let projectAddTaskId = document.querySelector(".project_add_task_id");
+  let proTaskMainName = document.querySelector(".project_add_task_main_name");
+
   projectAddTas.addEventListener("click", ()=>{
    let projectAddTaskMainShow = document.querySelector(".project_add_task_main_show");
    if(!projectAddTaskMainShow){
@@ -435,33 +611,48 @@
   });
   subProYes.addEventListener("click", ()=>{
    if(projectAddTaskContnetInp.value&&!reg.test(projectAddTaskContnetInp.value)){
+
     if( regTestDate.test(projectAddTastdateInp.value)){
+
      controlDB.get(dbPN, 1, "task");
      var objectStore = db.transaction(dbPN, "readwrite").objectStore(dbPN);
      var objectStoreRequest = objectStore.get(1);
+
      objectStoreRequest.onsuccess = function(){
-      createLi(addValue, projectAddTaskContnetInp.value, "projectContent" );
+      
+      createLi(addValue, projectAddTaskContnetInp.value, "projectContent", projectAddTastdateInp.value);
+      
       let item = {
        "content": projectAddTaskContnetInp.value,
        "date": projectAddTastdateInp.value,
-       "pro": projectAddTaskId.childNodes[0].nodeValue
+       "pro": [proTaskMainName.childNodes[0].nodeValue, parseInt(projectAddTaskId.childNodes[0].nodeValue)]
       };
       let item2 = {
        task: addValue + 1
       };
+
       controlDB.add(dbTN, item);
       controlDB.edit(dbPN, 1, item2);
       projectAddTP.style = "display: block;";
       changeClass.cha(projectAddTaskMain, "project_add_task_main_show", "project_add_task_main");
+      createLi( addValue, projectAddTaskContnetInp.value, "today", proTaskMainName.childNodes[0].nodeValue);
+      deleteTodayT();
+      clickCTTC();
+      clickCPTC();
+
       projectAddTaskContnetInp.value = "";
       projectAddTastdateInp.value = "";
       projectTaskDelete();
+      ProjectTaskAmount();
+      
+
      };
      
 
     }else{
      alert("请你输入正确的日期哦");
     }
+
    }else{
     alert("请输入任务");
    }
@@ -475,21 +666,27 @@
 
  }
 
+
+
  function projectContentShow(target){
   let objectStore = db.transaction(dbTN, "readwrite").objectStore(dbTN);
   let projectTaskList = document.querySelector(".project_task_list");
+
   projectTaskList.innerHTML = " "; 
   objectStore.openCursor().onsuccess = function(e){
    let cursor = e.target.result;
+
    if(cursor){
-    let pr = cursor.value.pro;
+    let pr = cursor.value.pro[1];
+
     if(pr == target){
-     createLi(cursor.value.id, cursor.value.content, "projectContent");
+     createLi(cursor.value.id, cursor.value.content, "projectContent", cursor.value.date);
     }
     
     cursor.continue();
 
    }else{
+    clickCPTC();
     projectTaskDelete();
    }
   };
@@ -502,18 +699,132 @@
   let projectTaskListLi = document.querySelectorAll(".project_task_list li");
   let projectTaskListUl = document.querySelector(".project_task_list");
   for(let i = 0 ; i< projectTDelete.length; i++){
+  
    projectTDelete[i].onclick = function(e){
+  
     e.cancelBubble = true;
     projectTaskListUl.removeChild(projectTaskListLi[i]);
     controlDB.del(dbTN, parseInt(taskDelete[i].childNodes[0].nodeValue));
-   
-    
+    ProjectTaskAmount();
    };
   }
+
+  
  }
+
+ function ProjectTaskAmount(){
+
+  let proAm = document.querySelectorAll(".project_amount");
+  let deleteId = document.querySelectorAll(".delete_id");
+  let objectStore = db.transaction(dbTN).objectStore(dbTN);
+  let arr = new Array; 
+  
+  objectStore.openCursor().onsuccess = function(e){
+
+   let cursor = e.target.result;
+   if(cursor){
+    
+    if(arr[cursor.value.pro[1]]){
+     
+     arr[cursor.value.pro[1]] += 1;
+
+    }else{
+
+     arr[cursor.value.pro[1]] = 1;
+
+    }
+    
+    cursor.continue();
+
+   }else{
+    for(let i = 0; i< deleteId.length; i++){
+     if(!arr[parseInt(deleteId[i].childNodes[0].nodeValue)]){
+     
+      arr[parseInt(deleteId[i].childNodes[0].nodeValue)] = 0;
+     
+     }
+     
+     proAm[i].childNodes[0].nodeValue = arr[parseInt(deleteId[i].childNodes[0].nodeValue)];
+
+    }
+   }
+  };
+ }
+
+ function inboxContentShow(){
+
+  let inboxList = document.querySelector(".inbox_task_list");
+  let objectStore = db.transaction(dbTN).objectStore(dbTN);
+  inboxList.innerHTML = " ";
+
+  objectStore.openCursor().onsuccess = function(e){
+
+   let cursor = e.target.result;
+
+   
+   if(cursor){
+    
+    if(cursor.value.pro == 1){
+     let inboxLi = document.createElement("li");
+     
+     inboxLi.innerHTML = `<div>
+        <span class="inbox_task_de"></span>
+        <span class="inbox_task_name">${cursor.value.content}</span>
+        <span class="inbox_task_date">${cursor.value.date}</span>
+        <span class="inbox_task_id">${cursor.value.id}</span>
+        </div>`;
+
+     inboxList.appendChild(inboxLi); 
+   
+    }
+
+    cursor.continue();
+
+   }else{
+    inboxTaskD();
+    clickCITC();
+   }
+   
+
+  };
+
+ }
+
+
+ function inboxTaskD(){
+
+  let inboxTaskDelete = document.querySelectorAll(".inbox_task_de");
+  let inboxTaskLi = document.querySelectorAll(".inbox_task_list li");
+  let inboxTaskUl = document.querySelector(".inbox_task_list");
+  let inboxTaskDeId = document.querySelectorAll(".inbox_task_id");
+
+  for(let i = 0; i < inboxTaskDelete.length; i++){
+   inboxTaskDelete[i].addEventListener("click", (e)=>{
+    e.cancelBubble = true;
+    controlDB.del(dbTN, parseInt(inboxTaskDeId[i].childNodes[0].nodeValue));
+    inboxTaskUl.removeChild(inboxTaskLi[i]);  
+   
+    todayTaskS();
+
+
+   });
+  }
+
+
+ }
+
+ 
+ function inboxTaskChange(){
+
+
+ }
+
  addLoadEvent(addProject);
  addLoadEvent(addTodayTaskShow);
+ addLoadEvent(addInboxShow);
  addLoadEvent(setTime);
  addLoadEvent(todayAddTask);
  addLoadEvent(projectAddTask);
+ addLoadEvent(inboxContentShow);
+ 
 }());

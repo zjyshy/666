@@ -291,7 +291,7 @@
     //这里面是会重复多次的，写在if(!cursor)里面的就不会重复多次
     let projectLi = document.createElement("li");
     changeClass.add(projectLi, "tag_background");
-    projectLi.innerHTML = ` <div ><span class='project_color'> </span><span class='project_name title_name'> ${cursor.value.name}</span><span class='project_amount'> </span></div> <span class = "delete_id" style = "display:none">${cursor.value.id}</span><img id = ${cursor.value.id} class = "de" src="img/holder.gif">`;
+    projectLi.innerHTML = ` <div><span class='project_color'> </span><span class='project_name title_name'> ${cursor.value.name}</span><span class='project_amount'> </span></div> <span class = "delete_id" style = "display:none">${cursor.value.id}</span><img id = ${cursor.value.id} class = "de" src="img/holder.gif">`;
     projectUl.appendChild(projectLi);
     test = cursor.value.id;
     console.log(cursor.value.id);

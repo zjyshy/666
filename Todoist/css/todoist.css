@@ -569,7 +569,7 @@ td input{
     background-size: 16px 16px;
 
 }
-.task_name{
+.task_name, .inbox_task_name, .project_task_content{
 padding-left: 15px;
 vertical-align: top;
 line-height: 17px;
@@ -627,4 +627,33 @@ padding-right: 10px;
     padding-bottom: 5px;
     width: 540px;
     padding-top: 20px;
+}
+.project_task_date{
+    float: right;
+}
+.inbox_task_list li{
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    width: 540px;
+    padding-top: 20px;
+
+}
+.inbox_task_date{
+    float: right;
+}
+
+.inbox_task_de{
+    display: inline-block;
+    border: 1px solid #000000;
+    border-radius: 50%;   
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.inbox_task_de:hover{
+    background: url(../img/right.svg);
+    background-size: 16px 16px;
+}
+.inbox_task_id{
+    display: none;
 }

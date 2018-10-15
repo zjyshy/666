@@ -105,7 +105,7 @@
   const CW = document.getElementsByClassName("collapse__wrapper");
   const CWI = document.getElementsByClassName("collapse__wrapper_inner");
   //增加一个class expand使得隐藏的内容展现出来
-  for(let i = 0; i < 3; i++){
+  for(let i = 0; i < 1; i++){
 
    MLS[i].addEventListener("click", () =>{
     //!flg[i]为true undefined == false !undefined == true 点击第一次将对应数组赋1 1 == true !1 == false
