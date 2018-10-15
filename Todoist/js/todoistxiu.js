@@ -635,7 +635,7 @@
       controlDB.edit(dbPN, 1, item2);
       projectAddTP.style = "display: block;";
       changeClass.cha(projectAddTaskMain, "project_add_task_main_show", "project_add_task_main");
-      createLi( addValue, projectAddTaskContnetInp.value, "today", proTaskMainName.childNodes[0].nodeValue);
+      todayTaskS();
       deleteTodayT();
       clickCTTC();
       clickCPTC();
@@ -706,6 +706,7 @@
     projectTaskListUl.removeChild(projectTaskListLi[i]);
     controlDB.del(dbTN, parseInt(taskDelete[i].childNodes[0].nodeValue));
     ProjectTaskAmount();
+    todayTaskS();
    };
   }
 
